@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <LibTargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net461;netstandard2.0;net472</LibTargetFrameworks>
+    <TargetFrameworks>$(LibTargetFrameworks)</TargetFrameworks>    
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <PackageTags>Redis;Search;Modules;RediSearch</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <LangVersion>7.2</LangVersion>
+    <AssemblyName>StatsEngine.Analysis</AssemblyName>
+    <RootNamespace>StatsEngine.Analysis</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Persistence\StatsEngine.Persistence.csproj" />
+    <ProjectReference Include="..\Shared\StatsEngine.Shared.csproj" />
+  </ItemGroup>
+</Project>

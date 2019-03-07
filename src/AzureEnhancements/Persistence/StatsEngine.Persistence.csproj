@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <LibTargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net461;netstandard2.0;net472</LibTargetFrameworks>
+    <TargetFrameworks>$(LibTargetFrameworks)</TargetFrameworks>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <PackageTags>Stats;Bandwidth;CPU;PageFaults;Threadpool;Config;Types</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <LangVersion>7.2</LangVersion>
+    <AssemblyName>StatsEngine.Persistence</AssemblyName>
+    <RootNamespace>StatsEngine.Persistence</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\StatsEngine.Shared.csproj" />
+  </ItemGroup>
+</Project>

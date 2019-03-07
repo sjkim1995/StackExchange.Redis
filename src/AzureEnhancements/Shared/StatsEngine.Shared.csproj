@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <LibTargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net461;netstandard2.0;net472</LibTargetFrameworks>
+    <TargetFrameworks>$(LibTargetFrameworks)</TargetFrameworks>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <PackageTags>Stats;Bandwidth;CPU;PageFaults;Threadpool;Config;Types</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <LangVersion>7.2</LangVersion>
+    <AssemblyName>StatsEngine.Shared</AssemblyName>
+    <RootNamespace>StatsEngine.Shared</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.codeanalysis.common\2.8.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
