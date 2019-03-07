@@ -5,16 +5,16 @@ namespace StatsEngine.Analysis
 {
     public class AnalysisManager
     {
-        private BufferManager _bufMgr;
+        private PersistenceManager _persistenceMgr;
 
-        public AnalysisManager(BufferManager bufMgr)
+        public AnalysisManager(PersistenceManager persistenceMgr)
         {
-            _bufMgr = bufMgr;
+            _persistenceMgr = persistenceMgr;
         }
 
         public StatsBuffer<MachineStat> GetStatBuffer(StatType statType)
         {
-            return _bufMgr.GetBuffer(statType);
+            return _persistenceMgr.GetBuffer(statType);
         }
 
         public MachineStat GetLatestStat(StatType statType)

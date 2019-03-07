@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-
 
 namespace StatsEngine.Shared
 {
@@ -9,15 +7,7 @@ namespace StatsEngine.Shared
     {
         public OSNotSupportedException()
         {
-            Console.WriteLine("We only support Windows/Linux/OSX");
+            Console.WriteLine("Only Windows is supported at the moment");
         }
-
-#if NET472
-        public OSNotSupportedException(OSPlatform platform, StatType statType)
-        {
-            Console.WriteLine($"We currently do not support logging for {statType.ToString()} on {platform.ToString()}");
-        }
-#endif
-
     }
 }

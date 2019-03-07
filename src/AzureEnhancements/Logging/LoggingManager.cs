@@ -12,9 +12,9 @@ namespace StatsEngine.Logging
         private HashSet<MachineStatLogger> loggerSet;
         private TimeSpan _logFrequency;
 
-        private BufferManager bufMgr;
+        private PersistenceManager persistenceMgr;
 
-        public LoggingManager(BufferManager bufferManager, TimeSpan logFrequency)
+        public LoggingManager(PersistenceManager persistenceMgr, TimeSpan logFrequency)
         {
             if (logFrequency <= TimeSpan.Zero)
             {
@@ -22,13 +22,13 @@ namespace StatsEngine.Logging
             }
 
             _logFrequency = logFrequency;
-            bufMgr = bufferManager;
+            this.persistenceMgr = persistenceMgr;
 
             // Instantiate loggerSet and add loggers
             InitLoggerSet();
         }
 
-        public LoggingManager(BufferManager bufferManager) : this(bufferManager, TimeSpan.FromSeconds(SEConstants.DefaultLogInterval))
+        public LoggingManager(PersistenceManager persistenceMgr) : this(persistenceMgr, TimeSpan.FromSeconds(SEConstants.DefaultLogInterval))
         {
         }
 
@@ -37,10 +37,10 @@ namespace StatsEngine.Logging
             loggerSet = new HashSet<MachineStatLogger>
             { 
                 // Add new loggers here...
-                new BandwidthLogger(_logFrequency, bufMgr.GetBuffer(StatType.Bandwidth)),
-                new CPULogger(_logFrequency, bufMgr.GetBuffer(StatType.CPU)),
-                new ThreadPoolLogger(_logFrequency, bufMgr.GetBuffer(StatType.ThreadPool)),
-                new PageFaultLogger(_logFrequency, bufMgr.GetBuffer(StatType.PageFaults))
+                new BandwidthLogger(_logFrequency, persistenceMgr.GetBuffer(StatType.Bandwidth)),
+                new CPULogger(_logFrequency, persistenceMgr.GetBuffer(StatType.CPU)),
+                new ThreadPoolLogger(_logFrequency, persistenceMgr.GetBuffer(StatType.ThreadPool)),
+                new PageFaultLogger(_logFrequency, persistenceMgr.GetBuffer(StatType.PageFaults))
             };
         }
 

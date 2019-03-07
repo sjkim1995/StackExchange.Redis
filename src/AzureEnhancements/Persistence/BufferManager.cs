@@ -4,19 +4,19 @@ using StatsEngine.Shared;
 
 namespace StatsEngine.Persistence
 {
-    public class BufferManager
+    public class PersistenceManager
     {
         private readonly int capacity;
         private Dictionary<StatType, StatsBuffer<MachineStat>> bufferMap;
 
-        public BufferManager(int capacity)
+        public PersistenceManager(int capacity)
         {
             this.capacity = capacity;
 
             InitBufferMap();
         }
 
-        public BufferManager() : this(SEConstants.DefaultBufferSize)
+        public PersistenceManager() : this(SEConstants.DefaultBufferSize)
         {
         }
 

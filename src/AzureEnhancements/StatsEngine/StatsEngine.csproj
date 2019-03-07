@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <LibTargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net461;netstandard2.0;net472</LibTargetFrameworks>
+    <TargetFrameworks>$(LibTargetFrameworks)</TargetFrameworks>    
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <PackageTags>Analysis;Logging;Stats;Redis;StackExchange;Azure;Client;Performance</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <LangVersion>7.2</LangVersion>
+    <AssemblyName>StatsEngine</AssemblyName>
+    <RootNamespace>StatsEngine</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Analysis\StatsEngine.Analysis.csproj" />
+    <ProjectReference Include="..\Logging\StatsEngine.Logging.csproj" />
+    <ProjectReference Include="..\Persistence\StatsEngine.Persistence.csproj" />
+    <ProjectReference Include="..\Shared\StatsEngine.Shared.csproj" />
+
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.5.0" />
+    <PackageReference Include="System.IO.Pipelines" Version="4.5.1" />
+    <PackageReference Include="System.Threading.Channels" Version="4.5.0" />
+    
+  </ItemGroup>
+</Project>
