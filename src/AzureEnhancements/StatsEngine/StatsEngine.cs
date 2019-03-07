@@ -19,27 +19,32 @@ namespace StatsEngine
 
         private OSPlatform _OSPlatform;
 
-        public StatsEngine()
+        public StatsEngine() : this(autoStart: true)
         {
-            Init();
         }
 
-        private void Init()
+        public StatsEngine(bool autoStart)
         {
             persistenceMgr = new PersistenceManager();
             loggingMgr = new LoggingManager(persistenceMgr);
             analysisMgr = new AnalysisManager(persistenceMgr);
 
             SetOSPlatform();
-        }
 
+            if (autoStart)
+            {
+                StartLogging();
+            }
+        }
 
         private void SetOSPlatform()
         {
+            // will eventually need to add support for Linux and potentially OSX...
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 throw new OSNotSupportedException();
             }
+
             _OSPlatform = OSPlatform.Windows;
         }
 
@@ -53,6 +58,10 @@ namespace StatsEngine
             loggingMgr.StopLogging();
         }
 
+        public string GetMostRecentStats()
+        {
+            return analysisMgr.GetStatsInLogFormat();
+        }
 
     }
 }

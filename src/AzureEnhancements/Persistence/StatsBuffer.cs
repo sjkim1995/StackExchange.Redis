@@ -64,7 +64,7 @@ namespace StatsEngine.Persistence
         /// <summary>
         /// Returns the most recently collected stat
         /// </summary>
-        public T PeekMostRecentStat()
+        public T PeekFront()
         {
             return buffer.Front();
         }
@@ -72,7 +72,7 @@ namespace StatsEngine.Persistence
         /// <summary>
         /// Returns the least recently collected stat
         /// </summary>
-        public T PeekLeastRecentStat()
+        public T PeekBack()
         {
             return buffer.Back();
         }

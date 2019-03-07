@@ -1,4 +1,6 @@
-﻿using StatsEngine.Persistence;
+﻿using System;
+using System.Text;
+using StatsEngine.Persistence;
 using StatsEngine.Shared;
 
 namespace StatsEngine.Analysis
@@ -17,12 +19,33 @@ namespace StatsEngine.Analysis
             return _persistenceMgr.GetBuffer(statType);
         }
 
-        public MachineStat GetLatestStat(StatType statType)
+        /// <summary>
+        /// Returns the most recent stat for the given type.
+        /// </summary>
+        /// <param name="statType"></param>
+        public MachineStat GetMostRecentStat(StatType statType)
         {
             var buf = GetStatBuffer(statType);
-            MachineStat latestStat = buf.PeekMostRecentStat();
+            MachineStat latestStat = buf.PeekFront();
 
             return latestStat;
+        }
+
+        /// <summary>
+        // Returns the most recent statistic from each StatBuffer as a concatenated string.
+        /// </summary>
+        public string GetStatsInLogFormat()
+        {
+            var sb = new StringBuilder();
+
+            // get the latest statistic for each StatType and append to sb
+            foreach (StatType type in Enum.GetValues(typeof(StatType)))
+            {
+                string statMessage = GetMostRecentStat(type).ToLogString();
+                sb.AppendLine(statMessage);
+            }
+
+            return sb.ToString();
         }
 
     }
