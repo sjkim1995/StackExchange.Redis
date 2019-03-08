@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.1;net461;net462;net47;net472</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <DefineConstants>SEV2</DefineConstants>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AssemblyName>AzTestConsole</AssemblyName>
+    <RootNamespace>AzTestConsole</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Computername)'=='OCHO' or '$(Computername)'=='SKINK'">
+    <LocalReference>true</LocalReference>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\StackExchange.Redis\StackExchange.Redis.csproj" />
+  </ItemGroup>
+</Project>

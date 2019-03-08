@@ -128,6 +128,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatsEngine.Analysis", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatsEngine", "src\AzureEnhancements\StatsEngine\StatsEngine.csproj", "{5DBF0952-157A-45EB-BD1A-E825E79A6F18}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzTestConsole", "src\AzureEnhancements\AzTestConsole\AzTestConsole.csproj", "{41C394A3-CFFF-4F90-A756-3103BFEE2DFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +196,10 @@ Global
 		{5DBF0952-157A-45EB-BD1A-E825E79A6F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DBF0952-157A-45EB-BD1A-E825E79A6F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DBF0952-157A-45EB-BD1A-E825E79A6F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41C394A3-CFFF-4F90-A756-3103BFEE2DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41C394A3-CFFF-4F90-A756-3103BFEE2DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41C394A3-CFFF-4F90-A756-3103BFEE2DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C394A3-CFFF-4F90-A756-3103BFEE2DFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,6 +227,7 @@ Global
 		{B06010CD-E5D0-4798-9ED7-9A8A19AD3FE8} = {FBC69AB5-0335-4AB3-96AE-4099C9FB75FD}
 		{9B5103A6-F442-4961-ADB8-3C24A88D3A6B} = {FBC69AB5-0335-4AB3-96AE-4099C9FB75FD}
 		{5DBF0952-157A-45EB-BD1A-E825E79A6F18} = {9B0049F5-3CDB-4428-AEAF-EAD1C90E1891}
+		{41C394A3-CFFF-4F90-A756-3103BFEE2DFF} = {9B0049F5-3CDB-4428-AEAF-EAD1C90E1891}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {193AA352-6748-47C1-A5FC-C9AA6B5F000B}
