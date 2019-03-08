@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using StatsEngine.Logging;
-using StatsEngine.Persistence;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Logging;
+using AzRedisEnhancements.Persistence;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
     public class LoggingManager
     {

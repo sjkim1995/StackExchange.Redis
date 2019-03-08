@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
-using StatsEngine.Persistence;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Persistence;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Analysis
+namespace AzRedisEnhancements.Analysis
 {
     public class AnalysisManager
     {

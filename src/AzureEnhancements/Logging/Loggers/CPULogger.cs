@@ -1,9 +1,9 @@
-﻿using StatsEngine.Persistence;
+﻿using AzRedisEnhancements.Persistence;
 using System;
 using System.Diagnostics;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
     class CPULogger : MachineStatLogger
     {

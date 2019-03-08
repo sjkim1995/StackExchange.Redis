@@ -1,11 +1,11 @@
 ﻿
 using System;
 
-namespace StatsEngine.Shared
+namespace AzRedisEnhancements.Shared
 {
     public class ThreadPoolStats : MachineStat
     {
-        public ThreadPoolStats() : base() { }
+        public ThreadPoolStats() : base(StatType.ThreadPool) { }
 
         public int BusyIoThreads { get; set; }
 

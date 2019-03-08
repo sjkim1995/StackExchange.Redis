@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using StatsEngine.Persistence;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Persistence;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
 
     class ThreadPoolLogger : MachineStatLogger

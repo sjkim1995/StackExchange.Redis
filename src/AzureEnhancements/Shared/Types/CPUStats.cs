@@ -1,8 +1,8 @@
-﻿namespace StatsEngine.Shared
+﻿namespace AzRedisEnhancements.Shared
 {
     public class CPUStats : MachineStat
     {
-        public CPUStats() : base() { }
+        public CPUStats() : base(StatType.CPU) { }
 
         public double? CPU { get; set; }
 

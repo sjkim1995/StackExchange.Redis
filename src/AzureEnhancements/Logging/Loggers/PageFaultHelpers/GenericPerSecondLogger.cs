@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
     abstract class GenericPerSecondLogger : InitHolder
     {

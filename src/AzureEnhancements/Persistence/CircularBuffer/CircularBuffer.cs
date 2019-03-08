@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 
-namespace StatsEngine.Persistence
+namespace AzRedisEnhancements.Persistence
 {
     /// <inheritdoc/>
     /// <summary>

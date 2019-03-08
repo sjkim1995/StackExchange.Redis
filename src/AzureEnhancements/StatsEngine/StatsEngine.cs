@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using StatsEngine.Persistence;
-using StatsEngine.Logging;
-using StatsEngine.Analysis;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Persistence;
+using AzRedisEnhancements.Logging;
+using AzRedisEnhancements.Analysis;
+using AzRedisEnhancements.Shared;
 
 
-namespace StatsEngine
+namespace AzRedisEnhancements
 {
-    public class StatsEngine
+    public class AzStatsEngine
     {
-
-        // Architecture:
-        // [Logging] writes to ------> [Persistence] <------ reads from [Analysis]
-        private PersistenceManager persistenceMgr;
+        private readonly PersistenceManager persistenceMgr;
         private LoggingManager loggingMgr;
         private AnalysisManager analysisMgr;
 
         private OSPlatform _OSPlatform;
 
-        public StatsEngine() : this(autoStart: true)
+        public AzStatsEngine() : this(autoStart: true)
         {
         }
 
-        public StatsEngine(bool autoStart)
+        public AzStatsEngine(bool autoStart)
         {
             persistenceMgr = new PersistenceManager();
             loggingMgr = new LoggingManager(persistenceMgr);

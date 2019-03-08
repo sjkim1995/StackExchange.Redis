@@ -1,11 +1,11 @@
 ﻿
 using System;
 
-namespace StatsEngine.Shared
+namespace AzRedisEnhancements.Shared
 {
     public class PageFaultStats : MachineStat
     {
-        public PageFaultStats() : base() { }
+        public PageFaultStats() : base(StatType.PageFaults) { }
 
         public uint LastPageFaultsPerSecond { get; set; }
 

@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace StatsEngine.Shared
+namespace AzRedisEnhancements.Shared
 {
     public class BandwidthStats : MachineStat
     {
-        public BandwidthStats() : base() { }
+        public BandwidthStats() : base(StatType.Bandwidth) { }
 
         // IntervalEnd is the TimeStamp value on the base class
         public DateTimeOffset IntervalStart { get; set; }

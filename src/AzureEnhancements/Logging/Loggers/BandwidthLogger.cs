@@ -2,10 +2,10 @@
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using StatsEngine.Persistence;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Persistence;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
     class BandwidthLogger : MachineStatLogger
     {

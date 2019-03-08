@@ -1,7 +1,7 @@
 ﻿using System;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Persistence
+namespace AzRedisEnhancements.Persistence
 {
     public class StatsBuffer<T> where T : MachineStat
     {
@@ -11,7 +11,7 @@ namespace StatsEngine.Persistence
         public StatsBuffer(StatType statType, int capacity)
         {
             buffer = new CircularBuffer<T>(capacity);
-            _statType = statType;
+            this._statType = statType;
         }
 
         /// <summary>
@@ -39,10 +39,11 @@ namespace StatsEngine.Persistence
         /// </summary>
         public void PushStat(T item)
         {
+            if (item.statType != _statType)
+            {
+                throw new StatBufferTypeException(item.statType, _statType);
+            }
             buffer.PushFront(item);
-
-            // for testing purposes
-            Console.WriteLine(item.ToLogString());
         }
 
         /// <summary>

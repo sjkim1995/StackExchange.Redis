@@ -1,4 +1,4 @@
-﻿namespace StatsEngine.Shared
+﻿namespace AzRedisEnhancements.Shared
 {
     public enum StatType
     {

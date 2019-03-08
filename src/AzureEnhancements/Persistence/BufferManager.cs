@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Persistence
+namespace AzRedisEnhancements.Persistence
 {
     public class PersistenceManager
     {

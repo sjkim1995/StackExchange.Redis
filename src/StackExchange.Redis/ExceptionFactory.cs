@@ -263,6 +263,9 @@ namespace StackExchange.Redis
                 add("Local-CPU", "Local-CPU", PerfCounterHelper.GetSystemCpuPercent());
             }
 
+            string AzStats = mutiplexer.statsEngine.GetMostRecentStats();
+            sb.Append(AzStats);
+
             add("Version", "v", GetLibVersion());
 
             sb.Append(" (Please take a look at this article for some common client-side issues that can cause timeouts: ");

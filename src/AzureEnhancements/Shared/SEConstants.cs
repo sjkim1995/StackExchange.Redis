@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace StatsEngine.Shared
+﻿namespace AzRedisEnhancements.Shared
 {
     public static class SEConstants
     {
-        public const int DefaultLogInterval = 10;
-        public const int DefaultBufferSize = 30;
+        public const int DefaultLogInterval = 5;
+        public const int DefaultBufferSize = 60;
     }
 }

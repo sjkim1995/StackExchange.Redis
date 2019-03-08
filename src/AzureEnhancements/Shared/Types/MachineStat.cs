@@ -1,16 +1,17 @@
 ﻿using System;
 
-namespace StatsEngine.Shared
+namespace AzRedisEnhancements.Shared
 {
-    // Base class for all stat types collected about the client machine
+    // Base for all stat types about with the client's machine
 
     public abstract class MachineStat
     {
-
-        public MachineStat()
+        public MachineStat(StatType type)
         {
-           
+            statType = type;
         }
+
+        public StatType statType;
 
         public DateTimeOffset TimeStamp { get; set; }
 

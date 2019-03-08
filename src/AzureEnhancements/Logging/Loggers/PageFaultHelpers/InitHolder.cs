@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
     abstract public class InitHolder
     {

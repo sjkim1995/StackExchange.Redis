@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using StatsEngine.Persistence;
-using StatsEngine.Shared;
+using AzRedisEnhancements.Persistence;
+using AzRedisEnhancements.Shared;
 
-namespace StatsEngine.Logging
+namespace AzRedisEnhancements.Logging
 {
     internal abstract class MachineStatLogger : IDisposable
     {

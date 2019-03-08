@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace StatsEngine.Shared
+namespace AzRedisEnhancements.Shared
 {
     public class OSNotSupportedException : Exception
     {
-        public OSNotSupportedException()
+        public OSNotSupportedException() : base("Only Windows is supported at this time.")
         {
-            Console.WriteLine("Only Windows is supported at the moment.");
         }
     }
 }
