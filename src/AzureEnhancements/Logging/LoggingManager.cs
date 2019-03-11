@@ -44,7 +44,7 @@ namespace AzRedisEnhancements.Logging
             };
         }
 
-        public void StartLogging()
+        public void StartLoggers()
         {
             foreach (var logger in loggerSet)
             {
@@ -52,7 +52,7 @@ namespace AzRedisEnhancements.Logging
             }
         }
 
-        public void StopLogging()
+        public void StopLoggers()
         {
             foreach (var logger in loggerSet)
             {

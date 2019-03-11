@@ -33,7 +33,7 @@ namespace AzRedisEnhancements.Logging
 
         }
 
-        public PageFaultHelper(TimeSpan intervalInSeconds) : base("Page faults per sec", new string[] { "faults", "reads" }, Convert.ToInt32(intervalInSeconds.TotalSeconds))
+        public PageFaultHelper(TimeSpan intervalInSeconds) : base("Page faults per sec", new string[] { "faults", "reads" })
         {
         }
 

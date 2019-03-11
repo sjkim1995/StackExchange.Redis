@@ -15,7 +15,7 @@ namespace AzRedisEnhancements.Shared
 
         public override string ToLogString()
         {
-            return String.Format("[{0}] Page faults per sec: [reads: {1}, faults: {2}]", TimeStamp, LastPageFaultsPerSecond, LastPageReadsFaultedPerSecond);
+            return string.Format("[{0}] Page faults per sec: [reads: {1}, faults: {2}]", TimeStamp.ToString("u"), LastPageFaultsPerSecond, LastPageReadsFaultedPerSecond);
         }
 
     }

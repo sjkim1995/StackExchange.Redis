@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Text;
 using System.Runtime.InteropServices;
 using AzRedisEnhancements.Persistence;
 using AzRedisEnhancements.Logging;
 using AzRedisEnhancements.Analysis;
 using AzRedisEnhancements.Shared;
-
 
 namespace AzRedisEnhancements
 {
@@ -13,8 +13,6 @@ namespace AzRedisEnhancements
         private readonly PersistenceManager persistenceMgr;
         private LoggingManager loggingMgr;
         private AnalysisManager analysisMgr;
-
-        private OSPlatform _OSPlatform;
 
         public AzStatsEngine() : this(autoStart: true)
         {
@@ -26,7 +24,7 @@ namespace AzRedisEnhancements
             loggingMgr = new LoggingManager(persistenceMgr);
             analysisMgr = new AnalysisManager(persistenceMgr);
 
-            SetOSPlatform();
+            CheckOSPlatform();
 
             if (autoStart)
             {
@@ -34,30 +32,34 @@ namespace AzRedisEnhancements
             }
         }
 
-        private void SetOSPlatform()
+        private void CheckOSPlatform()
         {
             // will eventually need to add support for Linux and potentially OSX...
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 throw new OSNotSupportedException();
             }
-
-            _OSPlatform = OSPlatform.Windows;
         }
 
         public void StartLogging()
         {
-            loggingMgr.StartLogging();
+            loggingMgr.StartLoggers();
         }
 
         public void StopLogging()
         {
-            loggingMgr.StopLogging();
+            loggingMgr.StopLoggers();
         }
 
-        public string GetMostRecentStats()
+        public string GetStatsInLogFormat()
         {
-            return analysisMgr.GetStatsInLogFormat();
+            var sb = new StringBuilder();
+            sb.AppendLine().AppendLine();
+            sb.AppendLine("Additional Statistics: ");
+            string stats = analysisMgr.GetAllRecentStats();
+            sb.AppendLine(stats);
+
+            return sb.ToString();
         }
 
     }

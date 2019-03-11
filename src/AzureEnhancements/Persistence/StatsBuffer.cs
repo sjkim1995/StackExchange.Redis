@@ -11,7 +11,7 @@ namespace AzRedisEnhancements.Persistence
         public StatsBuffer(StatType statType, int capacity)
         {
             buffer = new CircularBuffer<T>(capacity);
-            this._statType = statType;
+            _statType = statType;
         }
 
         /// <summary>

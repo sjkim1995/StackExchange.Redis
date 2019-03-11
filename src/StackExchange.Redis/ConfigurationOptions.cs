@@ -87,7 +87,8 @@ namespace StackExchange.Redis
                 SyncTimeout = "syncTimeout",
                 TieBreaker = "tiebreaker",
                 Version = "version",
-                WriteBuffer = "writeBuffer";
+                WriteBuffer = "writeBuffer",
+                IncludeAzStats = "inclueAzStats";
 
             private static readonly Dictionary<string, string> normalizedOptions = new[]
             {
@@ -115,6 +116,7 @@ namespace StackExchange.Redis
                 TieBreaker,
                 Version,
                 WriteBuffer,
+                IncludeAzStats
             }.ToDictionary(x => x, StringComparer.OrdinalIgnoreCase);
 
             public static string TryNormalize(string value)
@@ -127,7 +129,7 @@ namespace StackExchange.Redis
             }
         }
 
-        private bool? allowAdmin, abortOnConnectFail, highPrioritySocketThreads, resolveDns, ssl;
+        private bool? allowAdmin, abortOnConnectFail, highPrioritySocketThreads, resolveDns, ssl, includeAzStats;
 
         private string tieBreaker, sslHost, configChannel;
 
@@ -164,6 +166,11 @@ namespace StackExchange.Redis
         /// Indicates whether admin operations should be allowed
         /// </summary>
         public bool AllowAdmin { get { return allowAdmin.GetValueOrDefault(); } set { allowAdmin = value; } }
+
+        /// <summary>
+        /// Indicates whether the Azure Stats Engine should be used to collect stats on the client machine
+        /// </summary>
+        public bool IncludeAzStats { get { return includeAzStats.GetValueOrDefault(); } set { includeAzStats = value; } }
 
         /// <summary>
         /// Specifies the time in milliseconds that the system should allow for asynchronous operations (defaults to SyncTimeout)
@@ -433,6 +440,7 @@ namespace StackExchange.Redis
                 syncTimeout = syncTimeout,
                 asyncTimeout = asyncTimeout,
                 allowAdmin = allowAdmin,
+                includeAzStats = includeAzStats,
                 defaultVersion = defaultVersion,
                 connectTimeout = connectTimeout,
                 Password = Password,
@@ -496,6 +504,7 @@ namespace StackExchange.Redis
             Append(sb, OptionKeys.SyncTimeout, syncTimeout);
             Append(sb, OptionKeys.AsyncTimeout, asyncTimeout);
             Append(sb, OptionKeys.AllowAdmin, allowAdmin);
+            Append(sb, OptionKeys.IncludeAzStats, includeAzStats);
             Append(sb, OptionKeys.Version, defaultVersion);
             Append(sb, OptionKeys.ConnectTimeout, connectTimeout);
             Append(sb, OptionKeys.Password, (includePassword || string.IsNullOrEmpty(Password)) ? Password : "*****");
@@ -591,7 +600,7 @@ namespace StackExchange.Redis
         {
             ClientName = ServiceName = Password = tieBreaker = sslHost = configChannel = null;
             keepAlive = syncTimeout = asyncTimeout = connectTimeout = writeBuffer = connectRetry = configCheckSeconds = DefaultDatabase = null;
-            allowAdmin = abortOnConnectFail = highPrioritySocketThreads = resolveDns = ssl = null;
+            allowAdmin = abortOnConnectFail = highPrioritySocketThreads = includeAzStats = resolveDns = ssl = null;
             defaultVersion = null;
             EndPoints.Clear();
             commandMap = null;
@@ -713,6 +722,9 @@ namespace StackExchange.Redis
                             break;
                         case OptionKeys.SslProtocols:
                             SslProtocols = OptionKeys.ParseSslProtocols(key, value);
+                            break;
+                        case OptionKeys.IncludeAzStats:
+                            IncludeAzStats = OptionKeys.ParseBoolean(key, value);
                             break;
                         default:
                             if (!string.IsNullOrEmpty(key) && key[0] == '$')

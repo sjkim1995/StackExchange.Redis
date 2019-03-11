@@ -12,6 +12,16 @@ namespace StackExchange.Redis
         /// <summary>
         /// Statistics logger for client-side metrics such as Bandwidth, CPU, PageFaults, etc.
         /// </summary>
-        public AzStatsEngine statsEngine = new AzStatsEngine();
+        internal AzStatsEngine StatsEngine { get; private set; }
+
+        partial void OnCreateStatsEngine(ConfigurationOptions configuration)
+        {
+            StatsEngine = configuration.IncludeAzStats ? new AzStatsEngine() : null;
+        }
+
+        partial void OnCloseStatsEngine()
+        {
+            StatsEngine = null;
+        }
     }
 }

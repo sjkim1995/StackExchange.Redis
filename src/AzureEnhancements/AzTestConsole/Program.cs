@@ -1,52 +1,42 @@
 ﻿using System;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using StackExchange.Redis;
 
 namespace TestConsole
 {
-    internal static class Program
+    class Program
     {
-        public static async Task Main()
+        const int KB = 1024;
+        const int MB = KB * 1024;
+
+        static async Task Main(string[] args)
         {
-            var client = ConnectionMultiplexer.Connect("localhost");
-            client.GetDatabase().Ping();
-            var db = client.GetDatabase(0);
+            var conn = Connect();
+            IDatabase cache = conn.GetDatabase();
 
-            var start = DateTime.Now;
+            await Task.Delay(20000);
 
-            Show(client.GetCounters());
+            cache.StringSet("foo", 423);
 
-            var tasks = Enumerable.Range(0, 1000).Select(async i =>
-            {
-                int timeoutCount = 0;
-                RedisKey key = i.ToString();
-                for (int t = 0; t < 1000; t++)
-                {
-                    try
-                    {
-                        await db.StringIncrementAsync(key, 1);
-                    }
-                    catch (TimeoutException) { timeoutCount++; }
-                }
-                return timeoutCount;
-            }).ToArray();
-
-            await Task.WhenAll(tasks);
-            int totalTimeouts = tasks.Sum(x => x.Result);
-            Console.WriteLine("Total timeouts: " + totalTimeouts);
-            Console.WriteLine();
-            Show(client.GetCounters());
-
-            var duration = DateTime.Now.Subtract(start).TotalMilliseconds;
-            Console.WriteLine($"{duration}ms");
+            conn.Dispose();
         }
-        private static void Show(ServerCounters counters)
+
+        public static void AddData(IDatabase cache, string key, int valueSize)
         {
-            Console.WriteLine("CA: " + counters.Interactive.CompletedAsynchronously);
-            Console.WriteLine("FA: " + counters.Interactive.FailedAsynchronously);
-            Console.WriteLine("CS: " + counters.Interactive.CompletedSynchronously);
-            Console.WriteLine();
+            var rand = new Random();
+            byte[] value = new byte[valueSize];
+            rand.NextBytes(value);
+            cache.StringSet(key, value);
+        }
+
+        private static ConnectionMultiplexer Connect()
+        {
+            string configString = "SETester.redis.cache.windows.net:6380,password=moAWjI4RLFDQH8p5go2fTKa6+8ZzqjVeoceX2UwqXUs=,ssl=True,abortConnect=False";
+            ConfigurationOptions options = ConfigurationOptions.Parse(configString);
+            options.SyncTimeout = 1; //ms
+            options.IncludeAzStats = true;
+            return ConnectionMultiplexer.Connect(options);
         }
     }
 }

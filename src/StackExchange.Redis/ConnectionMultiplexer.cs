@@ -1045,6 +1045,7 @@ namespace StackExchange.Redis
             AsyncTimeoutMilliseconds = configuration.AsyncTimeout;
 
             OnCreateReaderWriter(configuration);
+            OnCreateStatsEngine(configuration);
             ServerSelectionStrategy = new ServerSelectionStrategy(this);
 
             var configChannel = configuration.ConfigurationChannel;
@@ -1056,6 +1057,8 @@ namespace StackExchange.Redis
         }
 
         partial void OnCreateReaderWriter(ConfigurationOptions configuration);
+
+        partial void OnCreateStatsEngine(ConfigurationOptions configuration);
 
         internal const int MillisecondsPerHeartbeat = 1000;
         private sealed class TimerToken
@@ -2038,10 +2041,13 @@ namespace StackExchange.Redis
             }
             DisposeAndClearServers();
             OnCloseReaderWriter();
+            OnCloseStatsEngine();
             OnClosing(true);
         }
 
         partial void OnCloseReaderWriter();
+
+        partial void OnCloseStatsEngine();
 
         private void DisposeAndClearServers()
         {

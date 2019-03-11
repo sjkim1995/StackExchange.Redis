@@ -23,7 +23,7 @@ namespace AzRedisEnhancements.Analysis
         /// Returns the most recent stat for the given type.
         /// </summary>
         /// <param name="statType"></param>
-        public MachineStat GetMostRecentStat(StatType statType)
+        public MachineStat GetSingleRecentStat(StatType statType)
         {
             var buf = GetStatBuffer(statType);
             MachineStat latestStat = buf.PeekFront();
@@ -32,16 +32,25 @@ namespace AzRedisEnhancements.Analysis
         }
 
         /// <summary>
-        // Returns the most recent statistic from each StatBuffer as a concatenated string.
+        // Retrieves the most recent stat from each StatBuffer and return them as a newline-separated string.
         /// </summary>
-        public string GetStatsInLogFormat()
+        public string GetAllRecentStats()
         {
             var sb = new StringBuilder();
 
             // get the latest statistic for each StatType and append to sb
             foreach (StatType type in Enum.GetValues(typeof(StatType)))
             {
-                string statMessage = GetMostRecentStat(type).ToLogString();
+                string statMessage;
+                try
+                {
+                    MachineStat stat = GetSingleRecentStat(type);
+                    statMessage = stat.ToLogString();
+                }
+                catch(Exception)
+                {
+                    statMessage = $"Latest stat not available for {StatTypeExtentions.ToFriendlyString(type)}";
+                }
                 sb.AppendLine(statMessage);
             }
 

@@ -19,7 +19,7 @@ namespace AzRedisEnhancements.Shared
 
         public override string ToLogString()
         {
-            return string.Format("[{0}] BandWidth Usage ==> READ: {1} MBits/Sec, WRITE: {2} MBits/Sec",
+            return string.Format("[{0}] BandWidth Usage: READ: {1} MBits/sec, WRITE: {2} MBits/sec",
                             TimeStamp.ToString("u"),
                             Math.Round(MbitsReadPerSecond, 2),
                             Math.Round(MbitsWritePerSecond, 2));
