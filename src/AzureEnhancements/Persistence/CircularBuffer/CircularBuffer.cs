@@ -189,6 +189,7 @@ namespace AzRedisEnhancements.Persistence
             {
                 Decrement(ref _start);
                 _end = _start;
+                _buffer[_start] = default(T);
                 _buffer[_start] = item;
             }
             else

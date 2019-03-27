@@ -719,9 +719,9 @@ namespace StackExchange.Redis
                             var iter = result.GetItems().GetEnumerator();
                             while(iter.MoveNext())
                             {
-                                ref RawResult key = ref iter.CurrentReference;
+                                ref RawResult key = ref iter.Current;
                                 if (!iter.MoveNext()) break;
-                                ref RawResult val = ref iter.CurrentReference;
+                                ref RawResult val = ref iter.Current;
 
                                 if (key.IsEqual(CommonReplies.timeout) && val.TryGetInt64(out long i64))
                                 {

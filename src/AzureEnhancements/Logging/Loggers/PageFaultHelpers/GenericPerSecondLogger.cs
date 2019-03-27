@@ -66,7 +66,7 @@ namespace AzRedisEnhancements.Logging
                 }
 
             }
-
+            
             return sb.ToString();
         }
     }

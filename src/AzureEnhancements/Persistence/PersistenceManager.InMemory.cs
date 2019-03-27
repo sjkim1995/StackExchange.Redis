@@ -26,7 +26,7 @@ namespace AzRedisEnhancements.Persistence
         /// </summary>
         public void AddNewBuffer(StatType type)
         {
-            bufferMap.Add(type, new StatsBuffer<MachineStat>(type, capacity));
+            bufferMap.Add(type, new StatsBuffer<MachineStat>(type, SEConstants.GetBufferSize(type)));
         }
 
         public StatsBuffer<MachineStat> GetBuffer(StatType type)

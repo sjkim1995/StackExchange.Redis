@@ -7,17 +7,21 @@ namespace TestConsole
 {
     class Program
     {
-        const int KB = 1024;
-        const int MB = KB * 1024;
-
         static async Task Main(string[] args)
         {
             var conn = Connect();
             IDatabase cache = conn.GetDatabase();
 
-            await Task.Delay(20000);
+            await Task.Delay(10000);
 
-            cache.StringSet("foo", 423);
+            try
+            {
+                cache.StringSet("foo", 423);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
 
             conn.Dispose();
         }

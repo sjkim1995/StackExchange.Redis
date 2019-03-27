@@ -30,13 +30,16 @@ namespace AzRedisEnhancements.Logging
         {
             try
             {
+                MachineStat stat;
                 while (!_disposed)
                 {
                     await Task.Delay(_logFrequency);
 
-                    var stat = GetStat();
+                    stat = GetStat();
 
                     LogStat(stat);
+
+                    stat = null;
                 }
             }
             catch (Exception e)

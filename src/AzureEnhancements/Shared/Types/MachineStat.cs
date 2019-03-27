@@ -4,7 +4,7 @@ namespace AzRedisEnhancements.Shared
 {
     // Base for all stat types about with the client's machine
 
-    public abstract class MachineStat
+    public abstract class MachineStat 
     {
         public MachineStat(StatType type)
         {
@@ -16,6 +16,5 @@ namespace AzRedisEnhancements.Shared
         public DateTimeOffset TimeStamp { get; set; }
 
         public abstract string ToLogString();
-
     }
 }

@@ -64,7 +64,7 @@ namespace StackExchange.Redis
                         var iter = items.GetEnumerator();
                         while (iter.MoveNext())
                         {
-                            var next = TryCreate(connection, in iter.CurrentReference);
+                            var next = TryCreate(connection, in iter.Current);
                             if (next == null) return null; // means we didn't understand
                             arr[i++] = next;
                         }

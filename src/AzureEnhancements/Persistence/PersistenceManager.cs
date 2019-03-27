@@ -6,17 +6,10 @@ namespace AzRedisEnhancements.Persistence
 {
     public partial class PersistenceManager
     {
-        private readonly int capacity;
-
-        public PersistenceManager(int capacity)
+        public PersistenceManager()
         {
-            this.capacity = capacity;
-
             InitBufferMap();
         }
 
-        public PersistenceManager() : this(SEConstants.DefaultBufferSize)
-        {
-        }
     }
 }
