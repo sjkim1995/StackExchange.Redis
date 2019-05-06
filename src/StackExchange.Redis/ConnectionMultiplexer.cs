@@ -1028,7 +1028,7 @@ namespace StackExchange.Redis
         private ConnectionMultiplexer(ConfigurationOptions configuration)
         {
             IncludeDetailInExceptions = true;
-            IncludePerformanceCountersInExceptions = false;
+            IncludePerformanceCountersInExceptions = true;
 
             RawConfig = configuration ?? throw new ArgumentNullException(nameof(configuration));
 

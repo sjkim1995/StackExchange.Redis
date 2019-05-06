@@ -10,9 +10,9 @@ namespace AzRedisEnhancements.Shared
         // Default log interval in milliseconds for each stat type
         public static Dictionary<StatType, TimeSpan> DefaultLogIntervals = new Dictionary<StatType, TimeSpan>()
         {
-            { StatType.Bandwidth, TimeSpan.FromMilliseconds(5000) },
+            { StatType.Bandwidth, TimeSpan.FromSeconds(5) },
             { StatType.CPU, TimeSpan.FromMilliseconds(250) },
-            { StatType.PageFaults, TimeSpan.FromMilliseconds(1) },
+            { StatType.PageFaults, TimeSpan.FromSeconds(1) },
             { StatType.ThreadPool, TimeSpan.FromMilliseconds(500) }
         };
 

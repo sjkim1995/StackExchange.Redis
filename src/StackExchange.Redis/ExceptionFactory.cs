@@ -267,8 +267,10 @@ namespace StackExchange.Redis
 
             if (mutiplexer.StatsEngine != null)
             {
-                string AzStats = mutiplexer.StatsEngine.GetStatsInLogFormat();
-                sb.Append(AzStats);
+                sb.AppendLine().AppendLine();
+                string azStats = mutiplexer.StatsEngine.GetMostRecentStats();
+                sb.Append("Additional Statistics");
+                sb.Append(azStats);
             }
 
             sb.Append(" (Please take a look at this article for some common client-side issues that can cause timeouts: ");

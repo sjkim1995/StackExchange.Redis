@@ -387,6 +387,14 @@ namespace StackExchange.Redis
                                 add("Last-Multiplexer-Heartbeat", "last-mbeat", mbeat + "s ago");
                             }
                             add("Last-Global-Heartbeat", "global", ConnectionMultiplexer.LastGlobalHeartbeatSecondsAgo + "s ago");
+
+                            if (bridge.Multiplexer.StatsEngine != null && bridge.Multiplexer.IncludeAzStatsOnConnectionFailure(failureType))
+                            {
+                                exMessage.AppendLine().AppendLine();
+                                string azStats = bridge.Multiplexer.StatsEngine.GetMostRecentStats();
+                                exMessage.AppendLine("Additional Statistics:");
+                                exMessage.Append(azStats);
+                            }
                         }
                     }
 

@@ -51,15 +51,9 @@ namespace AzRedisEnhancements
             loggingMgr.StopLoggers();
         }
 
-        public string GetStatsInLogFormat()
+        public string GetMostRecentStats()
         {
-            var sb = new StringBuilder();
-            sb.AppendLine().AppendLine();
-            sb.AppendLine("Additional Statistics: ");
-            string stats = analysisMgr.GetAllRecentStats();
-            sb.AppendLine(stats);
-
-            return sb.ToString();
+            return analysisMgr.GetAllRecentStats();
         }
 
     }
