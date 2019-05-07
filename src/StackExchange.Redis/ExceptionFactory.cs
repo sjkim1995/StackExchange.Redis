@@ -110,10 +110,16 @@ namespace StackExchange.Redis
             {
                 exceptionmessage.Append("; ").Append(innermostExceptionstring);
             }
-
+            
             if (includeDetail)
             {
                 exceptionmessage.Append("; ").Append(PerfCounterHelper.GetThreadPoolAndCPUSummary(includePerformanceCounters));
+            }
+
+            if (server != null && server.Multiplexer.StatsEngine != null)
+            {
+                string azStats = server.Multiplexer.StatsEngine.GetMostRecentStats();
+                exceptionmessage.Append(azStats);
             }
 
             var ex = new RedisConnectionException(ConnectionFailureType.UnableToResolvePhysicalConnection, exceptionmessage.ToString(), innerException, message?.Status ?? CommandStatus.Unknown);
@@ -267,9 +273,7 @@ namespace StackExchange.Redis
 
             if (mutiplexer.StatsEngine != null)
             {
-                sb.AppendLine().AppendLine();
                 string azStats = mutiplexer.StatsEngine.GetMostRecentStats();
-                sb.Append("Additional Statistics");
                 sb.Append(azStats);
             }
 

@@ -53,7 +53,13 @@ namespace AzRedisEnhancements
 
         public string GetMostRecentStats()
         {
-            return analysisMgr.GetAllRecentStats();
+            var sb = new StringBuilder();
+            sb.AppendLine().AppendLine();
+            sb.AppendLine("Additional Statistics:");
+
+            string stats = analysisMgr.GetAllRecentStats();
+            sb.AppendLine(stats);
+            return sb.ToString();
         }
 
     }

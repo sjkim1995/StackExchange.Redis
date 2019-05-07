@@ -390,9 +390,7 @@ namespace StackExchange.Redis
 
                             if (bridge.Multiplexer.StatsEngine != null && bridge.Multiplexer.IncludeAzStatsOnConnectionFailure(failureType))
                             {
-                                exMessage.AppendLine().AppendLine();
                                 string azStats = bridge.Multiplexer.StatsEngine.GetMostRecentStats();
-                                exMessage.AppendLine("Additional Statistics:");
                                 exMessage.Append(azStats);
                             }
                         }
