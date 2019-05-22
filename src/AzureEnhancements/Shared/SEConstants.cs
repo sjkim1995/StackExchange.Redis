@@ -18,7 +18,8 @@ namespace AzRedisEnhancements.Shared
 
         public static int GetBufferSize(StatType type)
         {
-            return (BufHistoryTimeInMs / (int) DefaultLogIntervals[type].TotalMilliseconds);
+            int sz = (BufHistoryTimeInMs / (int) DefaultLogIntervals[type].TotalMilliseconds);
+            return sz;
         }
     }
 }
